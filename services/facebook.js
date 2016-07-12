@@ -28,7 +28,7 @@ exports.doSubscribeRequest = function () {
 exports.processWebhookPost = function(body){
     console.log('test1');
     var data = JSONbig.parse(body);
-    console.log('test2');
+    console.log('test2 ');
 
     console.log('data',JSON.stringify(data));
 

@@ -1,7 +1,7 @@
 
 
 
-exports.db = function() {
+exports.data = function() {
 
     return {
         restaurant: [

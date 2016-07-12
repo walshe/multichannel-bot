@@ -101,7 +101,7 @@ exports.processReplyCallback = function(sender, response){
                     let products = [];
 
                     console.log("getting db")
-                    console.log("the db is " +JSON.stringify(db));
+                    console.log("the db is " +JSON.stringify(db.data()));
                     console.log("got db")
                     if(db[productType]){
 

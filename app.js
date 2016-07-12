@@ -13,6 +13,8 @@ var facebook = require("./services/facebook");
 
 var app = express();
 
+app.use(bodyParser.text({ type: 'application/json' }));
+
 const PORT = (process.env.PORT || 5000);
 
 var listener = app.listen(PORT, function(){

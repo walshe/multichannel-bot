@@ -2,7 +2,7 @@
   "name": "Multichannel chatbot",
   "description": "TODO",
   "repository": "https://github.com/walshe/multichannel-bot",
-  "logo": "",
+  "logo": "http://boylesoftware.com/img/logo-bs.svg",
   "keywords": ["TODO "],
   "env": {
     "APIAI_ACCESS_TOKEN": {

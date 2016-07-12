@@ -1,0 +1,32 @@
+/*
+  Manifest file for Heroku
+*/
+{
+  "name": "A Chatbot got between for various channels e.g. Facebook/ Skype /other and a particualr NLP service",
+  "description": "TODO",
+  "repository": "",
+  "logo": "",
+  "keywords": ["TODO"],
+  "env": {
+    "APIAI_ACCESS_TOKEN": {
+      "description": "Client access token for Api.ai",
+      "value": ""
+    },
+    "FB_VERIFY_TOKEN": {
+      "description": "Verification code",
+      "value": ""
+    },
+    "FB_PAGE_ACCESS_TOKEN": {
+      "description": "Page Access Token",
+      "value": ""
+    },
+    "APIAI_LANG": {
+      "description": "Agent language",
+      "value": "",
+      "required": false
+    }
+  },
+  "engines": {
+    "node": "5.10.1"
+  }
+}

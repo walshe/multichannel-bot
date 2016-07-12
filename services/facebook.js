@@ -38,9 +38,7 @@ exports.processWebhookPost = function(body){
         var sender = event.sender.id.toString();
         
         //TODO check the nlp service we are using
-        console.log('test6 ');
         if(event.message && event.message.text){
-            console.log('test7 ');
             apiai.processText(sender,event.message.text, this.processReplyCallback);
         }
 
@@ -65,7 +63,10 @@ exports.processReplyCallback = function(sender, response){
         let action = response.result.action;
         let actionIncomplete = response.result.actionIncomplete;
 
+        console.log('test1');
+
         if (isDefined(responseData) && isDefined(responseData.facebook)) {
+            console.log('responseData && responseData.facebook');
             try {
                 console.log('Response as formatted message');
                 sendFBMessage(sender, responseData.facebook);
@@ -99,6 +100,8 @@ exports.processReplyCallback = function(sender, response){
 
                     let products = [];
 
+                    console.log("the db is " +JSON.stringify(db));
+
                     if(db[productType]){
 
                         _.each(db[productType], function(product){
@@ -107,6 +110,8 @@ exports.processReplyCallback = function(sender, response){
                                 products.push(product);
                             }
                         });
+
+                        console.log("found following matches for "+productType + " in " + city + " " +JSON.stringify(products));
 
                         sendFBProcessingMessage(sender,false);
 
@@ -117,7 +122,7 @@ exports.processReplyCallback = function(sender, response){
                         sendFBMessage(sender, {text: "Could not find any results :(" });
                     }
 
-                    console.log("found following matches for "+productType + " in " + city + " " +JSON.stringify(products));
+
 
 
                     break;

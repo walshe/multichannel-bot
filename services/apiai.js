@@ -36,11 +36,8 @@ exports.processText = function(sender,text, processReplyCallback){
 
 
     apiaiRequest.on('response', ( response) => {
-
-
         processReplyCallback(sender, response)
         
-
     });
 
     apiaiRequest.on('error', (error) => console.error(error));

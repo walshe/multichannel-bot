@@ -43,7 +43,46 @@ exports.processWebhookPost = function(body){
             apiai.processText(sender,event.message.text, this.processReplyCallback);
         }
 
+        //payload processing
+        if(event.postback && event.postback.payload){
+
+            let payload = JSON.parse(event.postback.payload);
+
+            let productId = payload.productId;
+
+            let fbAction = payload['fb_action'];
+
+
+            if(fbAction == 'GET_COUPON'){
+
+                console.log('getting coupon');
+
+                //find coupon for that productId
+
+                _.each(db.restaurant, function(restaurant){
+                    if(restaurant.productId == productId){
+                        sendFBImage(sender, restaurant.coupon);
+                    }
+                })
+
+                _.each(db.clothing, function(clothingStore){
+                    if(clothingStore.productId == productId){
+                        sendFBImage(sender, clothingStore.coupon);
+                    }
+                })
+
+
+
+            }
+
+
+
+        }
+
     }
+
+
+
 
 }
 
@@ -103,7 +142,7 @@ exports.processReplyCallback = function(sender, response){
 
                     console.log("getting db")
                     console.log("the db is " +JSON.stringify(db.data()));
-                    console.log("got db")
+                    console.log("got db");
                     if(db.data()[productType]){
 
                         _.each(db.data()[productType], function(product){

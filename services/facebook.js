@@ -26,31 +26,15 @@ exports.doSubscribeRequest = function () {
 
 
 exports.processWebhookPost = function(body){
-    if(body){
-        console.log('there is a body');
-    }else{
-        console.log('No body');
-    }
-    console.log('test1');
-    //console.log('the body is: ' +JSON.stringify(JSON.parse(body)));
-    //console.log('body is:' +body);
 
     var data = JSONbig.parse(body);
-    console.log('test2 ');
-
-    console.log('data',JSON.stringify(data));
 
     var messaging_events = data.entry[0].messaging;
 
-    console.log('test3');
     for (var i = 0; i < messaging_events.length; i++) {
 
-        console.log('test4');
         var event = data.entry[0].messaging[i];
 
-        //console("event is " +JSON.stringify(event));
-
-        console.log('test5');
         var sender = event.sender.id.toString();
         
         //TODO check the nlp service we are using
@@ -59,8 +43,6 @@ exports.processWebhookPost = function(body){
             console.log('test7 ');
             apiai.processText(sender,event.message.text, this.processReplyCallback);
         }
-
-
 
     }
 
@@ -74,6 +56,8 @@ exports.processReplyCallback = function(sender, response){
     //TODO will need to customise for different responses
 
     console.log('in processReplyCallback');
+
+    console.log('the response is:' +JSON.stringify(response));
 
     if (isDefined(response.result)) {
         let responseText = response.result.fulfillment.speech;

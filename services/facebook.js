@@ -32,7 +32,7 @@ exports.processWebhookPost = function(body){
         console.log('No body');
     }
     console.log('test1');
-    console.log('the body is: ' +JSON.stringify(body));
+    console.log('the body is: ' +JSON.stringify(JSON.parse(body)));
     //console.log('body is:' +body);
 
     var data = JSONbig.parse(body);

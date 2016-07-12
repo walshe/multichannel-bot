@@ -2,6 +2,7 @@ const request = require('request');
 
 const JSONbig = require('json-bigint');
 const async = require('async');
+const _ = require('underscore');
 
 var apiai = require("./apiai");
 

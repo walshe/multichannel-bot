@@ -42,7 +42,7 @@ router.get('/fb-webhook/', function (req, res) {
 router.post('/fb-webhook/', function (req, res) {
     console.log('in fb-webhook POST');
     try {
-
+        console.log('the body is:' +JSON.stringify(req.body));
         facebook.processWebhookPost(req.body);
 
         return res.status(200).json({

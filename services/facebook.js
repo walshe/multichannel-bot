@@ -26,9 +26,13 @@ exports.doSubscribeRequest = function () {
 
 
 exports.processWebhookPost = function(body){
-
+    if(body){
+        console.log('there is a body');
+    }else{
+        console.log('No body');
+    }
     console.log('test1');
-    console.log('xthe body is: ' +JSON.stringify(body));
+    console.log('xthe body is: ' +JSON.stringify(JSON.parse(body)));
     //console.log('body is:' +body);
 
     var data = JSONbig.parse(body);

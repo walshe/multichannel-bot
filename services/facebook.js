@@ -61,13 +61,13 @@ exports.processWebhookPost = function(body){
 
                 //find coupon for that productId
 
-                _.each(db.restaurant, function(restaurant){
+                _.each(db.data().restaurant, function(restaurant){
                     if(restaurant.productId == productId){
                         sendFBImage(sender, restaurant.coupon);
                     }
                 })
 
-                _.each(db.clothing, function(clothingStore){
+                _.each(db.data().clothing, function(clothingStore){
                     if(clothingStore.productId == productId){
                         sendFBImage(sender, clothingStore.coupon);
                     }

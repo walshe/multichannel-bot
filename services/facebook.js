@@ -56,7 +56,7 @@ exports.processWebhookPost = function(body){
         //TODO check the nlp service we are using
         console.log('test6');
         if(event.message && event.message.text){
-            console.log('test7');
+            console.log('test7 ');
             apiai.processText(sender,event.message.text, this.processReplyCallback);
         }
 

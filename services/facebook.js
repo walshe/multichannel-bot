@@ -32,7 +32,7 @@ exports.processWebhookPost = function(body){
         console.log('No body');
     }
     console.log('test1');
-    console.log('the body is: ' +JSON.stringify(JSON.parse(body)));
+    //console.log('the body is: ' +JSON.stringify(JSON.parse(body)));
     //console.log('body is:' +body);
 
     var data = JSONbig.parse(body);
@@ -48,7 +48,7 @@ exports.processWebhookPost = function(body){
         console.log('test4');
         var event = data.entry[0].messaging[i];
 
-        console("event is " +JSON.stringify(event));
+        //console("event is " +JSON.stringify(event));
 
         console.log('test5');
         var sender = event.sender.id.toString();
@@ -57,7 +57,7 @@ exports.processWebhookPost = function(body){
         console.log('test6');
         if(event.message && event.message.text){
             console.log('test7');
-            apiai.processText(sender,event.message.text, processReplyCallback);
+            apiai.processText(sender,event.message.text, this.processReplyCallback);
         }
 
 

@@ -26,7 +26,10 @@ exports.doSubscribeRequest = function () {
 
 
 exports.processWebhookPost = function(body){
+    console.log('test');
     var data = JSONbig.parse(body);
+
+    console.log('in processWebhookPost:', JSON.parse(body));
 
     var messaging_events = data.entry[0].messaging;
 

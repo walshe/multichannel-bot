@@ -40,7 +40,7 @@ router.get('/fb-webhook/', function (req, res) {
  * webhook that receives the fb chat message after fb has been verified
  */
 router.post('/fb-webhook/', function (req, res) {
-    console.log('in fb-webhook POST');
+    console.log('in fb-webhook  POST');
     try {
         //console.log('the body is: ' +JSON.stringify(req.body));
         facebook.processWebhookPost(req.body);

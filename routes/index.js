@@ -33,13 +33,7 @@ router.get('/fb-webhook/', function (req, res) {
         res.send('Error, wrong validation token');
     }
 
-});
-
-
-/**
- * webhook that receives the fb chat message after fb has been verified
- */
-router.post('/fb-webhook/', function (req, res) {
+}).post(function (req, res) {
     console.log('in fb-webhook POST');
     try {
         console.log('the body is: ' +JSON.stringify(req.body));

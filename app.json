@@ -1,10 +1,7 @@
-/*
-  Manifest file for Heroku
-*/
 {
   "name": "A Chatbot got between for various channels e.g. Facebook/ Skype /other and a particualr NLP service",
   "description": "TODO",
-  "repository": "",
+  "repository": "https://github.com/walshe/multichannel-bot",
   "logo": "",
   "keywords": ["TODO"],
   "env": {

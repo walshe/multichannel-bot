@@ -1,3 +1,5 @@
+"use strict";
+
 const request = require('request');
 
 const JSONbig = require('json-bigint');
@@ -88,8 +90,6 @@ exports.processWebhookPost = function(body){
 
 
 exports.processReplyCallback = function(sender, response){
-
-    "use strict";
 
     //TODO will need to customise for different responses
 

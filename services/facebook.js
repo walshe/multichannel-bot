@@ -103,9 +103,9 @@ exports.processReplyCallback = function(sender, response){
                     console.log("getting db")
                     console.log("the db is " +JSON.stringify(db.data()));
                     console.log("got db")
-                    if(db[productType]){
+                    if(db.data()[productType]){
 
-                        _.each(db[productType], function(product){
+                        _.each(db.data()[productType], function(product){
                             if(product.city == city){
                                 //collect
                                 products.push(product);

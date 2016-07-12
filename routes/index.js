@@ -33,31 +33,18 @@ router.get('/fb-webhook/', function (req, res) {
         res.send('Error, wrong validation token');
     }
 
-}).post(function (req, res) {
+});
+
+
+/**
+ * webhook that receives the fb chat message after fb has been verified
+ */
+router.post('/fb-webhook/', function (req, res) {
     console.log('in fb-webhook POST');
     try {
 
         facebook.processWebhookPost(req.body);
 
-        var data = JSONbig.parse(req.body);
-
-        var messaging_events = data.entry[0].messaging;
-        console.log('test 3');
-        for (var i = 0; i < messaging_events.length; i++) {
-            console.log('test 4');
-            var event = data.entry[0].messaging[i];
-
-            if (AGENT == API_AI) {
-                console.log('process with api.ai');
-                processEventWithApiAi(event);
-            } else if (AGENT == MS_LUIS) {
-                console.log('process with luis');
-                processEventWithLuis(event);
-            } else {
-                console.log('wtf');
-            }
-
-        }
         return res.status(200).json({
             status: "ok"
         });

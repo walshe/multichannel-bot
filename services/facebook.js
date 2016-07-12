@@ -100,8 +100,9 @@ exports.processReplyCallback = function(sender, response){
 
                     let products = [];
 
+                    console.log("getting db")
                     console.log("the db is " +JSON.stringify(db));
-
+                    console.log("got db")
                     if(db[productType]){
 
                         _.each(db[productType], function(product){
@@ -167,6 +168,7 @@ function sendFBMessage(sender, messageData, callback) {
 
 
 function sendFBProcessingMessage(sender, typingOnOrOff, callback){
+
     request({
         url: 'https://graph.facebook.com/v2.6/me/messages',
         qs: {access_token: FB_PAGE_ACCESS_TOKEN},

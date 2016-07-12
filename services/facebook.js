@@ -20,7 +20,7 @@ exports.doSubscribeRequest = function () {
         },
         function (error, response, body) {
             if (error) {
-                console.error('Error while subscription: ', error);
+                console.error('Error while subscription:', error);
             } else {
                 console.log('Subscription result: ', response.body);
             }

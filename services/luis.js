@@ -1,6 +1,7 @@
+'use strict';
+
 const request = require('request');
 const JSONbig = require('json-bigint');
-
 
 
 exports.processText = function(callback){

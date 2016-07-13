@@ -23,6 +23,15 @@ const botConfig = new SkypeBotConfig(
 
 var sessionIds = new Map();
 
+/**
+ * use this cache for mapping user menu choices to productIds
+ * @type {{}}
+ */
+var recipientMenuCache =  {
+
+};
+
+
 function processReplyCallback(sender, response, bot){
 
     console.log('in the skype callback');
@@ -242,15 +251,6 @@ class SkypeBot {
 }
 
 const skypeBot = new SkypeBot(botConfig);
-
-
-/**
- * use this cache for mapping user menu choices to productIds
- * @type {{}}
- */
-var recipientMenuCache =  {
-
-};
 
 
 exports.processWebhookPost = function(body){

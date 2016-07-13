@@ -23,12 +23,14 @@ exports.test = function(){
 
 exports.processText = function(processReplyCallback){
 
-    console.log("API.AI processing text...", text);
-    
+
     let sender = arguments[1];
     let text = arguments[2];
     let bot = null;
-    
+
+    console.log("API.AI processing text...", text);
+
+
     if(arguments.length = 4){
         bot = arguments[3]
     }

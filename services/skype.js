@@ -14,7 +14,8 @@ var apiai = require("./apiai");
 var db = require('./dummydatabase');
 
 
-var sessionIds = new Map();
+//var sessionIds = new Map();
+var sessionIds = {};
 
 /**
  * use this cache for mapping user menu choices to productIds
@@ -162,7 +163,7 @@ class SkypeBot {
     processMessageWithApiAI(bot, data) {
         console.log('in processMessageWithApiAI');
         console.log('_sessionIds ' +sessionIds);
-        
+
         let messageText = data.content;
         let sender = data.from;
 
@@ -171,9 +172,15 @@ class SkypeBot {
         if (messageText && sender) {
             console.log('there was a messageText and sender');
 
-            if (!sessionIds.has(sender)) {
-                sessionIds.set(sender, uuid.v1());
+            // if (!sessionIds.has(sender)) {
+            //     sessionIds.set(sender, uuid.v1());
+            // }
+
+            if (!sessionIds[sender]) {
+                sessionIds[sender] = uuid.v1();
             }
+
+
 
             console.log('test5')
             if(/^\d+$/.test(messageText)){
@@ -229,7 +236,8 @@ class SkypeBot {
             }
 
             console.log('test6')
-            apiai.processText(processReplyCallback, sessionIds.get(sender), messageText, bot);
+            //apiai.processText(processReplyCallback, sessionIds.get(sender), messageText, bot);
+            apiai.processText(processReplyCallback, sessionIds[sender], messageText, bot);
 
 
         };

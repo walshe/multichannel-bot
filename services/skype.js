@@ -26,15 +26,19 @@ function processReplyCallback(sender, response){
 
     console.log('in the skype callback');
     if (SkypeBot.isDefined(response.result)) {
+        console.log('test a');
         let responseText = response.result.fulfillment.speech;
 
         console.log("response from api.ai------->"+JSON.stringify(response.result));
 
         if (SkypeBot.isDefined(responseText)) {
+            console.log('test b');
             console.log(sender, 'Response as text message');
+            console.log('test c');
 
             bot.reply(responseText, true, function(){
 
+                console.log('test d');
                 let action = response.result.action;
                 let actionIncomplete = response.result.actionIncomplete;
 

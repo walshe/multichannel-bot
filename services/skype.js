@@ -223,7 +223,7 @@ class SkypeBot {
                         bot.reply(customText,true, function(){
                             console.log("Sending attachment..");
 
-                            let buffer = fs.readFileSync('./public/UWS/Logo_Restaurants/QR_Code_Coupon/images.png');
+                            let buffer = fs.readFileSync('./public/images/coupon.png');
 
                             bot.replyWithAttachment("Result", "Image", buffer, null, function(){
                                 console.log("finished sending attachment")

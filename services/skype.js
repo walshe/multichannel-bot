@@ -43,6 +43,82 @@ const botConfig = new SkypeBotConfig(
  */
 function processLuisReplyCallback(sender, response, bot){
 
+    var data = JSONbig.parse(response.body);
+
+    console.log("got response from LUIS:" +JSON.stringify(data));
+
+    if(data['intents']){
+        let topIntent = data['intents'][0];
+        if(topIntent.intent == 'getProductByCity'){
+            console.log('got getProductByCity');
+            if(topIntent.actions[0].triggered){
+                console.log('got trigged');
+                let parameters = topIntent.actions[0].parameters;
+
+                let productType = '';
+                let city = '';
+
+                _.each(parameters, function(parameter){
+                    if(parameter.name == 'product'){
+                        productType = parameter['value'][0].entity.toLowerCase();
+                    }
+
+                    if(parameter.name == 'city'){
+                        city = parameter['value'][0].entity;
+                    }
+                });
+
+
+                console.log("processed productType ", productType);
+                console.log("processed city ", city);
+
+                let products = [];
+
+                if(db.data()[productType]){
+
+                    var customText = '';
+
+                    _.each(db.data()[productType], function(product){
+                        if(product.city.toUpperCase() == city.toUpperCase()){
+                            //collect
+                            products.push(product);
+                        }
+                    });
+
+                    if(products){
+
+                        recipientMenuCache[sender] = [];
+
+                        let customText = '';
+                        _.each(products, function(product, index){
+
+                            customText += (index+1).toString() + ' - ' +product.name +"\n";
+
+                            recipientMenuCache[sender].push({menuId: (index+1) , productId : product.productId});
+
+                        });
+
+                        customText += "\n\n Enter a number to make a choice e.g. 1"
+
+                        bot.reply(customText, true)
+
+
+                    }else{
+                        bot.reply("Couldn't find any results", true);
+                    }
+
+
+
+                }else{
+                    bot.reply("Could not find any results :(",true)
+                }
+
+
+            }
+        }else if(topIntent.intent == 'None'){
+            bot.reply("I did'nt understand what you said, please tell me what you are looking for an where e.g. I'm looking for restaurants in New York", true);
+        }
+    }
 }
 
 /**
@@ -263,11 +339,11 @@ class SkypeBot {
                         break;
 
                     case nlp.LUIS:
-                        luis.processText(processLuisReplyCallback, sender, event.message.text, null);
+                        luis.processText(processLuisReplyCallback, sender, event.message.text, bot);
                         break;
 
                     default:
-                        apiai.processText(this.processApiAiReplyCallback, sender, event.message.text, null);
+                        apiai.processText(processApiAiReplyCallback, sender, event.message.text, bot);
                         break;
 
                 }

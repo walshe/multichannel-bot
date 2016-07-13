@@ -1,6 +1,6 @@
 'use strict';
 
-exports = class SkypeBotConfig {
+module.exports = class SkypeBotConfig {
 
     get apiaiAccessToken() {
         return this._apiaiAccessToken;

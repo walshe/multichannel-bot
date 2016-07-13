@@ -21,10 +21,18 @@ exports.test = function(){
 }
 
 
-exports.processText = function(sender,text, processReplyCallback){
+exports.processText = function(processReplyCallback){
 
     console.log("API.AI processing text...", text);
-
+    
+    let sender = arguments[1];
+    let text = arguments[2];
+    let bot = null;
+    
+    if(arguments.length = 4){
+        bot = arguments[3]
+    }
+    
     if (!sessionIds.has(sender)) {
         sessionIds.set(sender, uuid.v1());
     }
@@ -36,7 +44,7 @@ exports.processText = function(sender,text, processReplyCallback){
 
 
     apiaiRequest.on('response', ( response) => {
-        processReplyCallback(sender, response)
+        processReplyCallback(sender, response, bot)
         
     });
 

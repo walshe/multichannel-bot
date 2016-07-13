@@ -22,7 +22,7 @@ const botConfig = new SkypeBotConfig(
 );
 
 
-function processReplyCallback(sender, response){
+function processReplyCallback(sender, response, bot){
 
     console.log('in the skype callback');
     if (SkypeBot.isDefined(response.result)) {
@@ -227,7 +227,7 @@ class SkypeBot {
             }
 
             console.log('test6')
-            apiai.processText(this._sessionIds.get(sender), messageText, processReplyCallback);
+            apiai.processText(processReplyCallback, this._sessionIds.get(sender), messageText, bot);
 
 
         };

@@ -61,16 +61,14 @@ router.post('/fb-webhook/', function (req, res) {
 
 
 /**
- * Skyoe webhook
+ * Skype webhook
  */
-router.post('/chat', (req, res) => {
+router.post('/chat', function (req, res) {
     try {
-
         skype.processWebhookPost(req.body);
-
         res.status(201);
         res.end();
-    } catch (err) {
+    }catch (err) {
         res.status(400);
         res.end();
     }

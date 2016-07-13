@@ -182,11 +182,6 @@ exports.processWebhookPost = function(body){
 
 
 
-
-
-
-
-
 exports.processReplyCallback = function(sender, response){
 
     console.log('in the skype callback');

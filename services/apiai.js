@@ -1,6 +1,7 @@
 "use strict";
 
 const apiai = require('apiai');
+const luis = require('luis');
 const uuid = require('node-uuid');
 const async = require('async');
 const _ = require('underscore');

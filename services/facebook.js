@@ -7,6 +7,7 @@ const async = require('async');
 const _ = require('underscore');
 
 var apiai = require("./apiai");
+var nlp = require("./nlp");
 
 const db = require("./dummydatabase");
 
@@ -40,12 +41,27 @@ exports.processWebhookPost = function(body){
 
         var sender = event.sender.id.toString();
         
-        //TODO check the nlp service we are using
         if(event.message && event.message.text){
-            apiai.processText(this.processReplyCallback, sender, event.message.text, null);
+
+            switch (process.env.NLP_SERVICE){
+                case nlp.API_AI:
+                    apiai.processText(this.processApiAiReplyCallback, sender, event.message.text, null);
+                    break;
+
+                case nlp.LUIS:
+                    luis.processText(this.processLuisReplyCallback(), sender, event.message.text, null);
+                    break;
+
+                default:
+                    apiai.processText(this.processApiAiReplyCallback, sender, event.message.text, null);
+                    break;
+
+            }
+
+
         }
 
-        //payload processing
+        //payload processing e.g. facebook chat buttons that were clicked
         if(event.postback && event.postback.payload){
 
             let payload = JSON.parse(event.postback.payload);
@@ -89,11 +105,78 @@ exports.processWebhookPost = function(body){
 }
 
 
-exports.processReplyCallback = function(sender, response){
+/**
+ * custom callback for LUIS responses
+ * @param sender
+ * @param response
+ */
+exports.processLuisReplyCallback = function(sender, response){
+    var data = JSONbig.parse(response.body);
 
-    //TODO will need to customise for different responses
+    console.log("got response from LUIS:" +JSON.stringify(data));
+    if(data['intents']){
+        let topIntent = data['intents'][0];
+        if(topIntent.intent == 'getProductByCity'){
+            console.log('got getProductByCity');
+            if(topIntent.actions[0].triggered){
+                console.log('got trigged');
+                let parameters = topIntent.actions[0].parameters;
 
-    console.log('in processReplyCallback');
+                let productType = '';
+                let city = '';
+
+                _.each(parameters, function(parameter){
+                    if(parameter.name == 'product'){
+                        productType = parameter['value'][0].entity.toLowerCase();
+                    }
+
+                    if(parameter.name == 'city'){
+                        city = parameter['value'][0].entity;
+                    }
+                });
+
+
+                console.log("processed productType ", productType);
+                console.log("processed city ", city);
+
+                let products = [];
+
+                if(db.data()[productType]){
+
+                    _.each(db.data()[productType], function(product){
+                        if(product.city.toUpperCase() == city.toUpperCase()){
+                            //collect
+                            products.push(product);
+                        }
+                    });
+
+                    sendFBProcessingMessage(sender,false);
+
+                    sendFBProductList(sender,products);
+
+
+                }else{
+                    sendFBMessage(sender, {text: "Could not find any results :(" });
+                }
+
+
+
+            }
+        }else if(topIntent.intent == 'None'){
+            sendFBMessage(sender, {text: "I did'nt understand what you said, please tell me what you are looking for an where e.g. I'm looking for restaurants in New York" });
+        }
+    }
+}
+
+/**
+ * custom callback for API.ai responses
+ * @param sender
+ * @param response
+ */
+exports.processApiAiReplyCallback = function(sender, response){
+
+
+    console.log('in processApiAiReplyCallback');
 
     console.log('the response is:' +JSON.stringify(response));
 

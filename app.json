@@ -5,6 +5,10 @@
   "logo": "http://boylesoftware.com/img/logo-bs.svg",
   "keywords": ["TODO "],
   "env": {
+    "NLP_SERVICE": {
+      "description": "the nlp service to use e.g. 'API_AI' or 'LUIS', will default to API_AI ",
+      "value": "API_AI"
+    },
     "APIAI_ACCESS_TOKEN": {
       "description": "Client access token for Api.ai",
       "value": "5a89ef985f8e420c9a8fe635b9039bd4"

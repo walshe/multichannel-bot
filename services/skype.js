@@ -48,11 +48,8 @@ class SkypeBot {
     }
 
     constructor(botConfig) {
+
         this._botConfig = botConfig;
-        var apiaiOptions = {
-            language: botConfig.apiaiLang,
-            requestSource: "skype"
-        };
 
         this._sessionIds = new Map();
 
@@ -68,18 +65,18 @@ class SkypeBot {
 
         this.botService.on('contactAdded', (bot, data) => {
             console.log("contactAdded", data.from);
-    });
+        });
 
         this.botService.on('personalMessage', (bot, data) => {
-
+            console.log('about to call processMessageWithApiAI');
             this.processMessageWithApiAI(bot, data);
-
-    });
+            console.log('after call to processMessageWithApiAI');
+        });
 
     }
 
     processMessageWithApiAI(bot, data) {
-
+        console.log('in processMessageWithApiAI');
         let messageText = data.content;
         let sender = data.from;
 

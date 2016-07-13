@@ -161,11 +161,12 @@ class SkypeBot {
 
 
     processMessageWithApiAI(bot, data) {
-        console.log('in processMessageWithApiAI');
         console.log('_sessionIds ' +JSON.stringify(sessionIds));
 
         let messageText = data.content;
         let sender = data.from;
+
+        console.log('in processMessageWithApiAI, messageText is', messageText, " and sender is ", sender);
 
 
         if (messageText && sender) {
@@ -229,10 +230,12 @@ class SkypeBot {
 
                 return;
 
+            }else{
+                //apiai.processText(processReplyCallback, sessionIds.get(sender), messageText, bot);
+                apiai.processText(processReplyCallback, sessionIds[sender], messageText, bot);
             }
 
-            //apiai.processText(processReplyCallback, sessionIds.get(sender), messageText, bot);
-            apiai.processText(processReplyCallback, sessionIds[sender], messageText, bot);
+
 
 
         };

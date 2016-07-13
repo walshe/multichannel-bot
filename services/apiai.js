@@ -21,8 +21,7 @@ exports.test = function(){
 }
 
 
-exports.processText = function(processReplyCallback){
-
+exports.processText = function(callback){
 
     let sender = arguments[1];
     let text = arguments[2];
@@ -46,7 +45,8 @@ exports.processText = function(processReplyCallback){
 
 
     apiaiRequest.on('response', ( response) => {
-        processReplyCallback(sender, response, bot)
+        console.log('got reply from api.ai, sending it to the callback to be processed');
+        callback(sender, response, bot)
         
     });
 

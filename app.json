@@ -24,15 +24,15 @@
     },
     "BOT_ID": {
       "description": "Skype bot id",
-      "value": ""
+      "value": "72e954e1-1899-48ac-872c-0947a4e95a6c"
     },
     "APP_ID": {
       "description": "Skype app id",
-      "value": ""
+      "value": "72e954e1-1899-48ac-872c-0947a4e95a6c"
     },
     "APP_SECRET": {
       "description": "Skype app secret",
-      "value": ""
+      "value": "w10qBCahQvNhjHOGYrJfT3e"
     }
   },
   "engines": {

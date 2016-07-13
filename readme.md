@@ -14,7 +14,7 @@ User then makes a choice and will be displayed a coupon for the product.
 
 
 # Architecture
-[file.pdf](doc/Arch.pdf)
+[architecture.pdf](doc/Arch.pdf)
 
 
 # NLP Services

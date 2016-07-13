@@ -162,12 +162,11 @@ class SkypeBot {
 
     processMessageWithApiAI(bot, data) {
         console.log('in processMessageWithApiAI');
-        console.log('_sessionIds ' +sessionIds);
+        console.log('_sessionIds ' +JSON.stringify(sessionIds));
 
         let messageText = data.content;
         let sender = data.from;
 
-        console.log('test1');
 
         if (messageText && sender) {
             console.log('there was a messageText and sender');
@@ -180,14 +179,11 @@ class SkypeBot {
                 sessionIds[sender] = uuid.v1();
             }
 
-
-
-            console.log('test5')
             if(/^\d+$/.test(messageText)){
 
                 console.log('user entered a menu choice')
 
-                console.log("..contents of cache:" + JSON.stringify(recipientMenuCache[sender]));
+                console.log("..contents of cache for sender:" +sender + " .. " + JSON.stringify(recipientMenuCache[sender]));
 
                 _.each(recipientMenuCache[sender], function(menuToProductIdMapping){
 
@@ -235,7 +231,6 @@ class SkypeBot {
 
             }
 
-            console.log('test6')
             //apiai.processText(processReplyCallback, sessionIds.get(sender), messageText, bot);
             apiai.processText(processReplyCallback, sessionIds[sender], messageText, bot);
 

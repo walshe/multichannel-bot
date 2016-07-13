@@ -220,7 +220,7 @@ class SkypeBot {
             }
 
             console.log('test6')
-            apiai.processText(this._sessionIds.get(sender), messageText, processReplyCallback);
+            apiai.processText(this._sessionIds.get(sender), messageText, this.processReplyCallback);
 
 
         };

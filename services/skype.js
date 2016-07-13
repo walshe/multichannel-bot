@@ -1,6 +1,5 @@
 'use strict';
 
-const apiai = require('apiai');
 const uuid = require('node-uuid');
 const skype = require('skype-sdk');
 const _ = require('underscore');

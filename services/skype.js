@@ -75,6 +75,7 @@ function processReplyCallback(sender, response, bot){
 
                         if(products){
 
+                            console.log('clearing recipientMenuCache');
                             recipientMenuCache[sender] = [];
 
                             let customText = '';
@@ -85,7 +86,7 @@ function processReplyCallback(sender, response, bot){
                                 recipientMenuCache[sender].push({menuId: (index+1) , productId : product.productId});
 
                             });
-
+                            console.log('recipientMenuCache now populated with menu items,,', JSON.stringify(recipientMenuCache));
                             customText += "\n\n Enter a number to make a choice e.g. 1"
 
                             bot.reply(customText, true)
@@ -184,6 +185,7 @@ class SkypeBot {
 
                 console.log('user entered a menu choice')
 
+                console.log("..entire contents of cache " + JSON.stringify(recipientMenuCache));
                 console.log("..contents of cache for sender:" +sender + " .. " + JSON.stringify(recipientMenuCache[sender]));
 
                 _.each(recipientMenuCache[sender], function(menuToProductIdMapping){

@@ -50,7 +50,7 @@ exports.processWebhookPost = function(body){
                     break;
 
                 case nlp.LUIS:
-                    luis.processText(this.processLuisReplyCallback(), sender, event.message.text, null);
+                    luis.processText(this.processLuisReplyCallback, sender, event.message.text, null);
                     break;
 
                 default:

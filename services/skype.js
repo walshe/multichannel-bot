@@ -116,7 +116,7 @@ function processLuisReplyCallback(sender, response, bot){
 
             }
         }else if(topIntent.intent == 'None'){
-            bot.reply("I did'nt understand what you said, please tell me what you are looking for an where e.g. I'm looking for restaurants in New York", true);
+            bot.reply("I did'nt understand what you said, please tell me what you are looking for an where e.g. I'm looking for restaurant in New York", true);
         }
     }
 }

@@ -9,7 +9,9 @@ const JSONbig = require('json-bigint');
 
 const SkypeBotConfig = require('./skypebotconfig');
 
+var nlp = require("./nlp");
 var apiai = require("./apiai");
+var luis = require("./luis");
 
 var db = require('./dummydatabase');
 
@@ -32,15 +34,26 @@ const botConfig = new SkypeBotConfig(
 );
 
 
+
 /**
- * process reply from nlp service
+ * custom api.ai callback
  * @param sender
  * @param response
  * @param bot
  */
-function processReplyCallback(sender, response, bot){
+function processLuisReplyCallback(sender, response, bot){
 
-    console.log('in the skype callback');
+}
+
+/**
+ * custom api.ai callback
+ * @param sender
+ * @param response
+ * @param bot
+ */
+function processApiAiReplyCallback(sender, response, bot){
+
+    console.log('in the apiai skype callback');
     if (SkypeBot.isDefined(response.result)) {
         console.log('test a');
         let responseText = response.result.fulfillment.speech;
@@ -155,7 +168,10 @@ class SkypeBot {
 
         this.botService.on('personalMessage', (bot, data) => {
             console.log('about to call processMessageWithApiAI');
-            this.processMessageWithApiAI(bot, data);
+
+            this.processMessage(bot, data);
+
+
 
         });
 
@@ -167,7 +183,7 @@ class SkypeBot {
      * @param bot
      * @param data
      */
-    processMessageWithApiAI(bot, data) {
+    processMessage(bot, data) {
         console.log('_sessionIds ' +JSON.stringify(sessionIds));
 
         let messageText = data.content;
@@ -239,7 +255,24 @@ class SkypeBot {
                 return;
 
             }else{
-                apiai.processText(processReplyCallback, sender, messageText, bot);
+
+
+                switch (process.env.NLP_SERVICE){
+                    case nlp.API_AI:
+                        apiai.processText(processApiAiReplyCallback, sender, messageText, bot);
+                        break;
+
+                    case nlp.LUIS:
+                        luis.processText(processLuisReplyCallback, sender, event.message.text, null);
+                        break;
+
+                    default:
+                        apiai.processText(this.processApiAiReplyCallback, sender, event.message.text, null);
+                        break;
+
+                }
+
+
             }
 
 

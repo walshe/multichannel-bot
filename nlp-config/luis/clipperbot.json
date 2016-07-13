@@ -1,0 +1,182 @@
+{
+  "luis_schema_version": "1.3.0",
+  "name": "clipperbot",
+  "desc": "",
+  "culture": "en-us",
+  "intents": [
+    {
+      "name": "getProductByCity"
+    },
+    {
+      "name": "None"
+    }
+  ],
+  "entities": [
+    {
+      "name": "product"
+    }
+  ],
+  "composites": [],
+  "bing_entities": [
+    "geography"
+  ],
+  "actions": [
+    {
+      "actionName": "getProductByCity",
+      "intentName": "getProductByCity",
+      "actionParameters": [
+        {
+          "parameterName": "product",
+          "entityName": "product",
+          "required": true
+        },
+        {
+          "parameterName": "city",
+          "entityName": "geography",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "model_features": [
+    {
+      "name": "producttypes",
+      "mode": true,
+      "words": "restuarant,diner,pub,cafe",
+      "activated": true
+    }
+  ],
+  "regex_features": [],
+  "utterances": [
+    {
+      "text": "looking for a restaurant in boston",
+      "intent": "getProductByCity",
+      "entities": [
+        {
+          "entity": "product",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "diners in boston",
+      "intent": "getProductByCity",
+      "entities": []
+    },
+    {
+      "text": "looking for restaurants in boston",
+      "intent": "getProductByCity",
+      "entities": [
+        {
+          "entity": "product",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "diners in new york",
+      "intent": "getProductByCity",
+      "entities": [
+        {
+          "entity": "product",
+          "startPos": 0,
+          "endPos": 0
+        }
+      ]
+    },
+    {
+      "text": "restaurants in boston",
+      "intent": "getProductByCity",
+      "entities": [
+        {
+          "entity": "product",
+          "startPos": 0,
+          "endPos": 0
+        }
+      ]
+    },
+    {
+      "text": "dfsdfsdf",
+      "intent": "None",
+      "entities": []
+    },
+    {
+      "text": "looking for diners in boston",
+      "intent": "getProductByCity",
+      "entities": [
+        {
+          "entity": "product",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "looking for diners in new york",
+      "intent": "getProductByCity",
+      "entities": [
+        {
+          "entity": "product",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "looking for a diner in boston",
+      "intent": "getProductByCity",
+      "entities": [
+        {
+          "entity": "product",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "looking for restaurants in san diego",
+      "intent": "getProductByCity",
+      "entities": []
+    },
+    {
+      "text": "looking for a restaurants in boston",
+      "intent": "getProductByCity",
+      "entities": [
+        {
+          "entity": "product",
+          "startPos": 3,
+          "endPos": 3
+        }
+      ]
+    },
+    {
+      "text": "looking for pubs in boston",
+      "intent": "getProductByCity",
+      "entities": [
+        {
+          "entity": "product",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    },
+    {
+      "text": "looking for clothing in boston",
+      "intent": "getProductByCity",
+      "entities": []
+    },
+    {
+      "text": "looking for cafe in boston",
+      "intent": "getProductByCity",
+      "entities": [
+        {
+          "entity": "product",
+          "startPos": 2,
+          "endPos": 2
+        }
+      ]
+    }
+  ]
+}

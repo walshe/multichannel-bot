@@ -339,11 +339,11 @@ class SkypeBot {
                         break;
 
                     case nlp.LUIS:
-                        luis.processText(processLuisReplyCallback, sender, event.message.text, bot);
+                        luis.processText(processLuisReplyCallback, sender, messageText, bot);
                         break;
 
                     default:
-                        apiai.processText(processApiAiReplyCallback, sender, event.message.text, bot);
+                        apiai.processText(processApiAiReplyCallback, sender, messageText, bot);
                         break;
 
                 }

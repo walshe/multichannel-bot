@@ -162,13 +162,14 @@ class SkypeBot {
         let messageText = data.content;
         let sender = data.from;
 
-        console.log('test1')
-        console.log('sender:' + sender)
-        console.log('test2')
+        console.log('test1');
+        console.log('sender:' + sender);
+        console.log('test2');
         if (messageText && sender) {
-            console.log('test3')
+            console.log('test3');
             console.log(sender, messageText);
-            console.log('test4')
+            console.log('test4');
+            console.log('_sessionIds ' +this._sessionIds);
             if (!this._sessionIds.has(sender)) {
                 this._sessionIds.set(sender, uuid.v1());
             }

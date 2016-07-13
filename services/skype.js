@@ -21,9 +21,7 @@ const botConfig = new SkypeBotConfig(
     process.env.APP_SECRET
 );
 
-module.exports = class SkypeBot {
-
-
+class SkypeBot {
 
     get botConfig() {
         return this._botConfig;

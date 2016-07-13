@@ -4,9 +4,7 @@
 NodeJS app that can be configured currently as a Facebook Messenger and Skype webhook.
 
 
-It accepts user text from Facebook or Skype and based on config will pass this text to either LUIS or Api.ai in order to collect
-
-product and city parameters. Once these params are passed back to the NodeJS app, the NodeJS app will offer a menu back to the user.
+It accepts user text from Facebook or Skype and based on config will pass this text to either LUIS or Api.ai in order to collect product and city parameters. Once these params are passed back to the NodeJS app, the NodeJS app will offer a menu back to the user.
 
 In the case of Facebook this will be a Facebook 'carousel', and in Skype it will be a simple numeric menu.
 
@@ -21,28 +19,30 @@ User then makes a choice and will be displayed a coupon for the product.
 
 
 ## IBM Watson ('Conversation' service) 
-Confusing non intuitive interface
-No in built entities e.g. cities
-Bad support - very hard to get hold of anyone tecnical. Difficult to work out difference between Conversation and Dialog services
-Seems experimental
-Not used currently ny the app
+- Confusing non intuitive interface
+- No in built entities e.g. cities
+- Bad support - very hard to get hold of anyone tecnical. Difficult to work out difference between Conversation and Dialog services
+- Seems experimental
+- Seems to be tied to IBM Bluemix cloud services
+- **Not used currently in the app**
 
 
 ## Microsoft LUIS (Better)
-Slightly better
-Has some support for know entities e.g. geographical locations
-Bad Support
-Interface seems a bit too simple and had problems with synonyms and editing an existing agent.
+- Slightly better
+- Has some support for know entities e.g. geographical locations
+- Bad Support
+- Interface seems a bit too simple and had problems with synonyms and editing an existing agent.
+- Agent seems to be tied to Microsoft Azure clouds services.
 
 ## Api.ai (Best)
-Sophisticated features.
-Really nice interface.
-Easy to train - has two modes Template and Example (Example is very easy to use)
-Good support
-In built entities e.g. cities
-Good support for synonyms e.g. Restaurant/diner/bar/pub
-Nice 'prompt' facility to prompt users for required params, which helps to collect info from the conversation.
-
+- Sophisticated features.
+- Really nice interface.
+- Easy to train - has two modes Template and Example (Example is very easy to use)
+- Good support
+- In built entities e.g. cities
+- Good support for synonyms e.g. Restaurant/diner/bar/pub
+- Nice 'prompt' facility to prompt users for required params, which helps to collect info from the conversation.
+- NLP agent can be hosted on private servers under the 'higher' plan.
 
 Summary - text is passed to api.ai service (at api.ai servers currently). Eventually api.ai's JSON response will give us an indication
 (in the returned JSON ) that we have taken the required data from the chat conversation and can do a particular action at that point 
@@ -86,6 +86,18 @@ e.g. actionIncomplete:false    and action:"getProductsByLocation"  see below...
 
 # Configuration
 Choose the nlp service to use by setting the process.env.NLP_SERVICE variable to "API_AI" or "LUIS" - (defaults to API_AI)
+
+## Api.ai configuration
+TODO
+
+## LUIS configuration
+TODO
+
+## Skype bot configuration
+TODO
+
+## Facebook Messenger platform configuration
+TODO
 
 # Agent data exports
 

@@ -4,6 +4,7 @@ const JSONbig = require('json-bigint');
 
 
 var facebook = require("../services/facebook");
+var skype = require("../services/skype");
 
 var router = express.Router();
 
@@ -56,6 +57,23 @@ router.post('/fb-webhook/', function (req, res) {
         });
     }
 
+});
+
+
+/**
+ * Skyoe webhook
+ */
+router.post('/chat', (req, res) => {
+    try {
+
+        skype.processWebhookPost(req.body);
+
+        res.status(201);
+        res.end();
+    } catch (err) {
+        res.status(400);
+        res.end();
+    }
 });
 
 

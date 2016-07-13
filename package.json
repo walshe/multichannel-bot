@@ -18,6 +18,8 @@
     "json-bigint": "^0.2.0",
     "async": "^2.0.0-rc.5",
     "underscore": "~1.8.3",
-    "apiai": "2.0.5"
+    "apiai": "2.0.5",
+    "skype-sdk": "https://devportalassets.azureedge.net/files/skype-sdk.tar.gz",
+    "restify": "^4.0.4"
   }
 }

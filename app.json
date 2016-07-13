@@ -21,6 +21,18 @@
       "description": "Agent language",
       "value": "",
       "required": false
+    },
+    "BOT_ID": {
+      "description": "Skype bot id",
+      "value": ""
+    },
+    "APP_ID": {
+      "description": "Skype app id",
+      "value": ""
+    },
+    "APP_SECRET": {
+      "description": "Skype app secret",
+      "value": ""
     }
   },
   "engines": {

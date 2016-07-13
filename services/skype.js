@@ -75,6 +75,80 @@ class SkypeBot {
 
     }
 
+    processReplyCallback = function(sender, response){
+
+        console.log('in the skype callback');
+        if (SkypeBot.isDefined(response.result)) {
+            let responseText = response.result.fulfillment.speech;
+
+            console.log("response from api.ai------->"+JSON.stringify(response.result));
+
+            if (SkypeBot.isDefined(responseText)) {
+                console.log(sender, 'Response as text message');
+
+                bot.reply(responseText, true, function(){
+
+                    let action = response.result.action;
+                    let actionIncomplete = response.result.actionIncomplete;
+
+                    if(action == 'getProductsByLocation' && !actionIncomplete){
+
+
+                        var city = response.result.parameters['geo-city-us'];
+                        var productType = response.result.parameters['product'];
+
+                        var products = [];
+
+                        if(db.data()[productType]){
+
+                            _.each(db.data()[productType], function(product){
+                                if(product.city == city){
+                                    //collect
+                                    products.push(product);
+                                }
+                            });
+
+                            if(products){
+
+                                recipientMenuCache[sender] = [];
+
+                                let customText = '';
+                                _.each(products, function(product, index){
+
+                                    customText += (index+1).toString() + ' - ' +product.name +"\n";
+
+                                    recipientMenuCache[sender].push({menuId: (index+1) , productId : product.productId});
+
+                                });
+
+                                customText += "\n\n Enter a number to make a choice e.g. 1"
+
+                                bot.reply(customText, true)
+
+
+                            }else{
+                                bot.reply("Couldn't find any results", true);
+                            }
+
+                        }else{
+                            bot.reply("Couldn't find any results", true)
+
+
+
+                        }
+
+
+                    };
+                });
+
+            } else {
+                console.log(sender, 'Received empty speech');
+            }
+        } else {
+            console.log(sender, 'Received empty result');
+        }
+    }
+
     processMessageWithApiAI(bot, data) {
         console.log('in processMessageWithApiAI');
 
@@ -146,7 +220,7 @@ class SkypeBot {
             }
 
             console.log('test6')
-            apiai.processText(this._sessionIds.get(sender), messageText, this.processReplyCallback);
+            apiai.processText(this._sessionIds.get(sender), messageText, processReplyCallback);
 
 
         };
@@ -188,76 +262,3 @@ exports.processWebhookPost = function(body){
 
 
 
-exports.processReplyCallback = function(sender, response){
-
-    console.log('in the skype callback');
-    if (SkypeBot.isDefined(response.result)) {
-        let responseText = response.result.fulfillment.speech;
-
-        console.log("response from api.ai------->"+JSON.stringify(response.result));
-
-        if (SkypeBot.isDefined(responseText)) {
-            console.log(sender, 'Response as text message');
-
-            bot.reply(responseText, true, function(){
-
-                let action = response.result.action;
-                let actionIncomplete = response.result.actionIncomplete;
-
-                if(action == 'getProductsByLocation' && !actionIncomplete){
-
-
-                    var city = response.result.parameters['geo-city-us'];
-                    var productType = response.result.parameters['product'];
-
-                    var products = [];
-
-                    if(db.data()[productType]){
-
-                        _.each(db.data()[productType], function(product){
-                            if(product.city == city){
-                                //collect
-                                products.push(product);
-                            }
-                        });
-
-                        if(products){
-
-                            recipientMenuCache[sender] = [];
-
-                            let customText = '';
-                            _.each(products, function(product, index){
-
-                                customText += (index+1).toString() + ' - ' +product.name +"\n";
-
-                                recipientMenuCache[sender].push({menuId: (index+1) , productId : product.productId});
-
-                            });
-
-                            customText += "\n\n Enter a number to make a choice e.g. 1"
-
-                            bot.reply(customText, true)
-
-
-                        }else{
-                            bot.reply("Couldn't find any results", true);
-                        }
-
-                    }else{
-                        bot.reply("Couldn't find any results", true)
-
-
-
-                    }
-
-
-                };
-            });
-
-        } else {
-            console.log(sender, 'Received empty speech');
-        }
-    } else {
-        console.log(sender, 'Received empty result');
-    }
-}

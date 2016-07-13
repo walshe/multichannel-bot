@@ -13,8 +13,6 @@ var apiai = require("./apiai");
 
 var db = require('./dummydatabase');
 
-
-//var sessionIds = new Map();
 var sessionIds = {};
 
 /**
@@ -241,7 +239,6 @@ class SkypeBot {
                 return;
 
             }else{
-                //apiai.processText(processReplyCallback, sessionIds.get(sender), messageText, bot);
                 apiai.processText(processReplyCallback, sender, messageText, bot);
             }
 

@@ -175,8 +175,8 @@ class SkypeBot {
 
             console.log('test5')
             if(/^\d+$/.test(messageText)){
-                //user made a menu choice
-                //bot.reply("You chose " + messageText +",  thats a great choice", function(){
+
+                console.log('user entered a menu choice')
 
                 console.log("..contents of cache:" + JSON.stringify(recipientMenuCache[sender]));
 

@@ -171,7 +171,7 @@ module.exports = class SkypeBot {
             apiai.processText(this._sessionIds.get(sender), messageText, processReplyCallback);
 
 
-        });
+        };
 
 
     }

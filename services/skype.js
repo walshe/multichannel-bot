@@ -77,17 +77,22 @@ class SkypeBot {
 
     processMessageWithApiAI(bot, data) {
         console.log('in processMessageWithApiAI');
+
         let messageText = data.content;
         let sender = data.from;
 
+        console.log('test1')
+        console.log('sender:' + sender)
+        console.log('test2')
         if (messageText && sender) {
-
+            console.log('test3')
             console.log(sender, messageText);
-
+            console.log('test4')
             if (!this._sessionIds.has(sender)) {
                 this._sessionIds.set(sender, uuid.v1());
             }
 
+            console.log('test5')
             if(/^\d+$/.test(messageText)){
                 //user made a menu choice
                 //bot.reply("You chose " + messageText +",  thats a great choice", function(){
@@ -140,7 +145,8 @@ class SkypeBot {
 
             }
 
-            apiai.processText(this._sessionIds.get(sender), messageText, processReplyCallback);
+            console.log('test6')
+            apiai.processText(this._sessionIds.get(sender), messageText, this.processReplyCallback);
 
 
         };

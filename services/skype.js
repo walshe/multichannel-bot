@@ -13,13 +13,6 @@ var apiai = require("./apiai");
 
 var db = require('./dummydatabase');
 
-const botConfig = new SkypeBotConfig(
-    process.env.APIAI_ACCESS_TOKEN,
-    process.env.APIAI_LANG,
-    process.env.BOT_ID,
-    process.env.APP_ID,
-    process.env.APP_SECRET
-);
 
 var sessionIds = new Map();
 
@@ -30,6 +23,16 @@ var sessionIds = new Map();
 var recipientMenuCache =  {
 
 };
+
+const botConfig = new SkypeBotConfig(
+    process.env.APIAI_ACCESS_TOKEN,
+    process.env.APIAI_LANG,
+    process.env.BOT_ID,
+    process.env.APP_ID,
+    process.env.APP_SECRET
+);
+
+
 
 
 function processReplyCallback(sender, response, bot){
@@ -149,7 +152,7 @@ class SkypeBot {
         this.botService.on('personalMessage', (bot, data) => {
             console.log('about to call processMessageWithApiAI');
             this.processMessageWithApiAI(bot, data);
-            console.log('after call to processMessageWithApiAI');
+
         });
 
     }
@@ -158,18 +161,16 @@ class SkypeBot {
 
     processMessageWithApiAI(bot, data) {
         console.log('in processMessageWithApiAI');
-
+        console.log('_sessionIds ' +sessionIds);
+        
         let messageText = data.content;
         let sender = data.from;
 
         console.log('test1');
-        console.log('sender:' + sender);
-        console.log('test2');
+
         if (messageText && sender) {
-            console.log('test3');
-            console.log(sender, messageText);
-            console.log('test4');
-            console.log('_sessionIds ' +sessionIds);
+            console.log('there was a messageText and sender');
+
             if (!sessionIds.has(sender)) {
                 sessionIds.set(sender, uuid.v1());
             }

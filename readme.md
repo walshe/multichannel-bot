@@ -18,7 +18,7 @@ User then makes a choice and will be displayed a coupon for the product.
 # NLP Services
 
 
-## IBM Watson ('Conversation' service) 
+## IBM Watson -'Conversation' service (Not great) 
 - Confusing non intuitive interface
 - No in built entities e.g. cities
 - Bad support - very hard to get hold of anyone tecnical. Difficult to work out difference between Conversation and Dialog services

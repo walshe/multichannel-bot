@@ -21,29 +21,6 @@ const botConfig = new SkypeBotConfig(
     process.env.APP_SECRET
 );
 
-
-const skypeBot = new SkypeBot(botConfig);
-
-
-/**
- * use this cache for mapping user menu choices to productIds
- * @type {{}}
- */
-var recipientMenuCache =  {
-
-};
-
-
-exports.processWebhookPost = function(body){
-
-    skypeBot.botService.processMessagingRequest(body);
-
-}
-
-
-
-
-
 module.exports = class SkypeBot {
 
 
@@ -93,13 +70,13 @@ module.exports = class SkypeBot {
 
         this.botService.on('contactAdded', (bot, data) => {
             console.log("contactAdded", data.from);
-        });
+    });
 
         this.botService.on('personalMessage', (bot, data) => {
 
             this.processMessageWithApiAI(bot, data);
 
-        });
+    });
 
     }
 
@@ -189,6 +166,30 @@ module.exports = class SkypeBot {
         return obj != null;
     }
 }
+
+const skypeBot = new SkypeBot(botConfig);
+
+
+/**
+ * use this cache for mapping user menu choices to productIds
+ * @type {{}}
+ */
+var recipientMenuCache =  {
+
+};
+
+
+exports.processWebhookPost = function(body){
+
+    skypeBot.botService.processMessagingRequest(body);
+
+}
+
+
+
+
+
+
 
 
 exports.processReplyCallback = function(sender, response){

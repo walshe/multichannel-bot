@@ -7,6 +7,7 @@ const async = require('async');
 const _ = require('underscore');
 
 var apiai = require("./apiai");
+var luis = require("./luis");
 var nlp = require("./nlp");
 
 const db = require("./dummydatabase");

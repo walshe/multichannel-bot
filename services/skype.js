@@ -34,8 +34,12 @@ const botConfig = new SkypeBotConfig(
 );
 
 
-
-
+/**
+ * process reply from nlp service
+ * @param sender
+ * @param response
+ * @param bot
+ */
 function processReplyCallback(sender, response, bot){
 
     console.log('in the skype callback');
@@ -160,7 +164,11 @@ class SkypeBot {
     }
 
 
-
+    /**
+     * processes te incoming message form skype
+     * @param bot
+     * @param data
+     */
     processMessageWithApiAI(bot, data) {
         console.log('_sessionIds ' +JSON.stringify(sessionIds));
 
@@ -234,7 +242,7 @@ class SkypeBot {
 
             }else{
                 //apiai.processText(processReplyCallback, sessionIds.get(sender), messageText, bot);
-                apiai.processText(processReplyCallback, sessionIds[sender], messageText, bot);
+                apiai.processText(processReplyCallback, sender, messageText, bot);
             }
 
 

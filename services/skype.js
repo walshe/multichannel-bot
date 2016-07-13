@@ -21,6 +21,7 @@ const botConfig = new SkypeBotConfig(
     process.env.APP_SECRET
 );
 
+var sessionIds = new Map();
 
 function processReplyCallback(sender, response, bot){
 
@@ -118,19 +119,9 @@ class SkypeBot {
         this._botService = value;
     }
 
-    get sessionIds() {
-        return this._sessionIds;
-    }
-
-    set sessionIds(value) {
-        this._sessionIds = value;
-    }
-
     constructor(botConfig) {
 
         this._botConfig = botConfig;
-
-        this._sessionIds = new Map();
 
         this._botService = new skype.BotService({
             messaging: {
@@ -169,9 +160,9 @@ class SkypeBot {
             console.log('test3');
             console.log(sender, messageText);
             console.log('test4');
-            console.log('_sessionIds ' +this._sessionIds);
-            if (!this._sessionIds.has(sender)) {
-                this._sessionIds.set(sender, uuid.v1());
+            console.log('_sessionIds ' +sessionIds);
+            if (!sessionIds.has(sender)) {
+                sessionIds.set(sender, uuid.v1());
             }
 
             console.log('test5')
@@ -228,7 +219,7 @@ class SkypeBot {
             }
 
             console.log('test6')
-            apiai.processText(processReplyCallback, this._sessionIds.get(sender), messageText, bot);
+            apiai.processText(processReplyCallback, sessionIds.get(sender), messageText, bot);
 
 
         };

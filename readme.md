@@ -4,7 +4,7 @@
 NodeJS app that can be configured currently as a Facebook Messenger and Skype webhook.
 
 
-It accepts user text from Facebook or Skype and based on config will pass this text to either LUIS or Api.ai in order to collect product and city parameters. Once these params are passed back to the NodeJS app, the NodeJS app will offer a menu back to the user.
+It accepts user text from Facebook or Skype, and based on configuration will pass this text to either Microsoft LUIS or Api.ai nlp services in order to collect product and city parameters. Once these params are passed back to the NodeJS app, the NodeJS app will offer a menu back to the user.
 
 In the case of Facebook this will be a Facebook 'carousel', and in Skype it will be a simple numeric menu.
 

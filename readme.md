@@ -101,20 +101,20 @@ e.g. actionIncomplete:false    and action:"getProductsByLocation"  see below...
 Choose the nlp service to use by setting the process.env.NLP_SERVICE variable to "API_AI" or "LUIS" - (defaults to API_AI)
 
 ## Api.ai configuration in NodeJS app
-APIAI_ACCESS_TOKEN - get this from the console in api.ai. This allows our app to contact api.ai servers
+- APIAI_ACCESS_TOKEN - get this from the console in api.ai. This allows our app to contact api.ai servers
 
 ## LUIS configuration in NodeJS app
 Currently in services/luis.js
 
 ## Skype bot configuration in NodeJS app
-Get the following from the Skype/Microsoft developer website and provide them so our NodeJS can send messages to Skype
-BOT_ID
-APP_ID
-APP_SECRET
+- Get the following from the Skype/Microsoft developer website and provide them so our NodeJS can send messages to Skype
+- BOT_ID
+- APP_ID
+- APP_SECRET
 
 ## Facebook Messenger platform configuration in NodeJS app
-FB_VERIFY_TOKEN - Custom password that verifys requests coming into our Facebook webhook - ask Emmett
-FB_PAGE_ACCESS_TOKEN - Access token for Facebook page that contains the chat
+- FB_VERIFY_TOKEN - Custom password that verifys requests coming into our Facebook webhook - ask Emmett
+- FB_PAGE_ACCESS_TOKEN - Access token for Facebook page that contains the chat
 
 # Agent data exports in NodeJS app
 
